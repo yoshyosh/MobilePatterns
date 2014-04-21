@@ -7,6 +7,7 @@
 //
 
 #import "PatternViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface PatternViewController ()
 
@@ -27,6 +28,7 @@
 {
     [super viewDidLoad];
     self.screenLabel.text = [NSString stringWithFormat:@"Screen %ld", (long)self.index];
+    [self.screenImage setImageWithURL:self.imageURL];
 }
 
 - (void)didReceiveMemoryWarning

@@ -11,5 +11,6 @@
 @interface PatternViewController : UIViewController
 @property (nonatomic) NSInteger index;
 @property (strong, nonatomic) IBOutlet UILabel *screenLabel;
-
+@property (strong, nonatomic) IBOutlet UIImageView *screenImage;
+@property (nonatomic) NSURL *imageURL;
 @end

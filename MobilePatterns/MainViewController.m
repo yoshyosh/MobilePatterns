@@ -8,6 +8,8 @@
 
 #import "MainViewController.h"
 #import "PatternViewController.h"
+#import "PatternPageViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface MainViewController ()
 
@@ -27,19 +29,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    NSData *jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://mobile-patterns.com/api/v1/patterns?app=Secret&sort=newest&limit=5"]];
+    NSError *error = nil;
+    NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
     
-    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    self.pageViewController.dataSource = self;
-    self.pageViewController.view.frame = self.view.bounds;
+    NSData *jsonDataAppNames = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://mobile-patterns.com/api/v1/patterns?apps"]];
+    NSDictionary *dataAppNameDictionary = [NSJSONSerialization JSONObjectWithData:jsonDataAppNames options:0 error:&error];
+    NSArray *appNameArray = [dataAppNameDictionary objectForKey:@"patterns"];
+    for (NSDictionary* dictionary in appNameArray) {
+        
+    }
+    self.arrayOfPatterns = [dataDictionary objectForKey:@"patterns"];
+    //Need to return array of patterns and grab the names of all the apps
+    //Then construct another URL and request those apps for each section
+                                                          
+                                                          
+    self.collectionPageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationVertical options:nil];
+    self.collectionPageViewController.dataSource = self;
+    self.collectionPageViewController.view.frame = self.view.bounds;
+
+    PatternPageViewController *initialPageViewController = [self pageViewControllerAtIndex:0];
+    NSArray *collectionViewControllers = [NSArray arrayWithObject:initialPageViewController];
     
-    PatternViewController *initialViewController = [self viewControllerAtIndex:0];
-    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
+    [self.collectionPageViewController setViewControllers:collectionViewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
-    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    
-    [self addChildViewController:self.pageViewController];
-    [self.view addSubview:self.pageViewController.view];
-    [self.pageViewController didMoveToParentViewController:self];
+    [self addChildViewController:self.collectionPageViewController];
+    [self.view addSubview:self.collectionPageViewController.view];
+    [self.collectionPageViewController didMoveToParentViewController:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,30 +67,48 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     
-    NSUInteger index = [(PatternViewController *)viewController index];
-    
-    if (index == 0) {
+    if ([viewController isKindOfClass:[PatternViewController class]]) {
+        NSUInteger index = [(PatternViewController *)viewController index];
+        
+        if (index == 0) {
+            return nil;
+        }
+        
+        index--;
+        
+        return [self viewControllerAtIndex:index];
+    } else {
+        NSUInteger index = [(PatternPageViewController *)viewController index];
+
+        if (index == 0) {
         return nil;
+        }
+        
+        index--;
+        return [self pageViewControllerAtIndex:index];
     }
-    
-    index--;
-    
-    return [self viewControllerAtIndex:index];
-    
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    
-    NSUInteger index = [(PatternViewController *)viewController index];
-    
-    
-    index++;
-    
-    if (index == 5) {
+    if ([viewController isKindOfClass:[PatternViewController class]]) {
+        NSUInteger index = [(PatternViewController *)viewController index];
+        
+        if (index == 4) {
+            return nil;
+        }
+        
+        index++;
+        return [self viewControllerAtIndex:index];
+    } else {
+        NSUInteger index = [(PatternPageViewController *)viewController index];
+
+        if (index == 4) {
         return nil;
+        }
+
+        index++;
+        return [self pageViewControllerAtIndex:index];
     }
-    
-    return [self viewControllerAtIndex:index];
     
 }
 
@@ -81,9 +116,36 @@
     
     PatternViewController *patternViewController = [[PatternViewController alloc] init];
     patternViewController.index = index;
-    
+    NSDictionary *pattern = self.arrayOfPatterns[index];
+    NSString *urlPrefix = pattern[@"image"][@"prefix"];
+    NSString *urlSize = pattern[@"image"][@"sizes"][0];
+    NSString *urlSuffix = pattern[@"image"][@"suffix"];
+    NSString *imageUrl = [NSString stringWithFormat:@"%@%@%@", urlPrefix, urlSize, urlSuffix];
+    //Crucial line for weird urls
+    NSString *webUrl = [imageUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *patternImageUrl = [NSURL URLWithString:webUrl];
+    patternViewController.imageURL = patternImageUrl;
     return patternViewController;
     
+}
+
+- (PatternPageViewController *)pageViewControllerAtIndex:(NSUInteger)index {
+    PatternPageViewController *patternPageViewController = [[PatternPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    patternPageViewController.index = index;
+    //Set new array to get values from for photos
+    patternPageViewController.dataSource = self;
+    patternPageViewController.view.frame = self.view.bounds;
+    
+    PatternViewController *initialViewController = [self viewControllerAtIndex:0];
+    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
+    
+    [patternPageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    
+    return patternPageViewController;
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 @end
