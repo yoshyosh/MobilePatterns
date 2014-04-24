@@ -21,5 +21,5 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 + (NSArray *)patternsWithArray:(NSArray *)array;
 + (NSArray *)allPatternNames:(NSArray *)array;
-- (NSURL *)buildPatternUrlRequest:(NSString *)string;
++ (NSString *)buildPatternUrlRequest:(NSString *)string;
 @end

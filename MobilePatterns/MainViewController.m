@@ -10,8 +10,11 @@
 #import "PatternViewController.h"
 #import "PatternPageViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "Pattern.h"
 
 @interface MainViewController ()
+
+- (PatternViewController *)viewControllerAtPageIndex:(NSUInteger)pageIndex patternIndex:(NSUInteger)patternIndex;
 
 @end
 
@@ -29,26 +32,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    NSData *jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://mobile-patterns.com/api/v1/patterns?app=Secret&sort=newest&limit=5"]];
-    NSError *error = nil;
-    NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
     
-    NSData *jsonDataAppNames = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://mobile-patterns.com/api/v1/patterns?apps"]];
-    NSDictionary *dataAppNameDictionary = [NSJSONSerialization JSONObjectWithData:jsonDataAppNames options:0 error:&error];
-    NSArray *appNameArray = [dataAppNameDictionary objectForKey:@"patterns"];
-    for (NSDictionary* dictionary in appNameArray) {
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://mobile-patterns.com/api/v1/apps"]];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSError *error = nil;
+        NSDictionary *dataAppNameDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        self.arrayPatternNames = [Pattern allPatternNames:[dataAppNameDictionary objectForKey:@"apps"]];
         
-    }
-    self.arrayOfPatterns = [dataDictionary objectForKey:@"patterns"];
-    //Need to return array of patterns and grab the names of all the apps
-    //Then construct another URL and request those apps for each section
-                                                          
-                                                          
+        self.arrayOfPatterns = [NSMutableArray array];
+        [self.arrayPatternNames enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            self.arrayOfPatterns[idx] = [NSMutableArray array];
+        }];
+        [self runSetup];
+        //TUrn off UIActivityIndicator
+    }];
+    
+// TODO: make sure that the app can handle having a nil self.arrayPatternNames, if self.arrayPatternNames == nil, check request/run request again, then run function that needs it on complete? Not exactly sure how to handle these states. Maybe its recursive, on completion run the function that needs arrayPatterns, that function always checks if nil first (prevents breakage but also shouldnt run at all since it is only called on complete. Possible checks for timeout here
+    
+
+
+
+}
+
+// TODO: reload the pageViewControllers after the network request comes back, is this the best way?
+- (void)runSetup {
     self.collectionPageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationVertical options:nil];
     self.collectionPageViewController.dataSource = self;
     self.collectionPageViewController.view.frame = self.view.bounds;
-
+    
     PatternPageViewController *initialPageViewController = [self pageViewControllerAtIndex:0];
     NSArray *collectionViewControllers = [NSArray arrayWithObject:initialPageViewController];
     
@@ -76,7 +87,8 @@
         
         index--;
         
-        return [self viewControllerAtIndex:index];
+        NSUInteger pageIndex = [(PatternPageViewController *)pageViewController index];
+        return [self viewControllerAtPageIndex:pageIndex patternIndex:index];
     } else {
         NSUInteger index = [(PatternPageViewController *)viewController index];
 
@@ -92,17 +104,20 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     if ([viewController isKindOfClass:[PatternViewController class]]) {
         NSUInteger index = [(PatternViewController *)viewController index];
-        
-        if (index == 4) {
+        NSUInteger pageIndex = [(PatternPageViewController *)pageViewController index];
+        NSArray *countArray = self.arrayOfPatterns[pageIndex];
+        if (index == (countArray.count - 1)) {
             return nil;
         }
         
         index++;
-        return [self viewControllerAtIndex:index];
+        
+        
+        return [self viewControllerAtPageIndex:pageIndex patternIndex:index];
     } else {
         NSUInteger index = [(PatternPageViewController *)viewController index];
 
-        if (index == 4) {
+        if (index >= [self.arrayPatternNames count]) {
         return nil;
         }
 
@@ -112,18 +127,11 @@
     
 }
 
-- (PatternViewController *)viewControllerAtIndex:(NSUInteger)index {
-    
+- (PatternViewController *)viewControllerAtPageIndex:(NSUInteger)pageIndex patternIndex:(NSUInteger)patternIndex {
     PatternViewController *patternViewController = [[PatternViewController alloc] init];
-    patternViewController.index = index;
-    NSDictionary *pattern = self.arrayOfPatterns[index];
-    NSString *urlPrefix = pattern[@"image"][@"prefix"];
-    NSString *urlSize = pattern[@"image"][@"sizes"][0];
-    NSString *urlSuffix = pattern[@"image"][@"suffix"];
-    NSString *imageUrl = [NSString stringWithFormat:@"%@%@%@", urlPrefix, urlSize, urlSuffix];
-    //Crucial line for weird urls
-    NSString *webUrl = [imageUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSURL *patternImageUrl = [NSURL URLWithString:webUrl];
+    patternViewController.index = patternIndex;
+    Pattern *pattern = self.arrayOfPatterns[pageIndex][patternIndex];
+    NSURL *patternImageUrl = [NSURL URLWithString:pattern.patternPicUrl];
     patternViewController.imageURL = patternImageUrl;
     return patternViewController;
     
@@ -132,11 +140,21 @@
 - (PatternPageViewController *)pageViewControllerAtIndex:(NSUInteger)index {
     PatternPageViewController *patternPageViewController = [[PatternPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     patternPageViewController.index = index;
-    //Set new array to get values from for photos
     patternPageViewController.dataSource = self;
     patternPageViewController.view.frame = self.view.bounds;
     
-    PatternViewController *initialViewController = [self viewControllerAtIndex:0];
+    //Should this be in a method?
+    NSArray *patterns = self.arrayOfPatterns[index];
+    if (patterns.count == 0) {
+        NSString *requestPatternsUrl = [Pattern buildPatternUrlRequest:self.arrayPatternNames[index]];
+        NSData *jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:requestPatternsUrl]];
+        NSError *error = nil;
+        NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+        self.arrayOfPatterns[index] = [Pattern patternsWithArray:[dataDictionary objectForKey:@"patterns"]];
+        NSLog(@"%@", self.arrayPatternNames[index]);
+    }
+    
+    PatternViewController *initialViewController = [self viewControllerAtPageIndex:index patternIndex:0];
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
     
     [patternPageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];

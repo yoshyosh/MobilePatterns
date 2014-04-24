@@ -17,9 +17,11 @@
         self.tags = dictionary[@"tags"];
         self.platform = dictionary[@"platform"];
         self.urlPrefix = dictionary[@"image"][@"prefix"];
-        self.picSize = dictionary[@"image"][@"size"][0];
+        self.picSize = dictionary[@"image"][@"sizes"][0];
         self.urlSuffix = dictionary[@"image"][@"suffix"];
-        self.patternPicUrl = [NSString stringWithFormat:@"%@%@%@", self.urlPrefix, self.picSize, self.urlSuffix];
+        
+        NSString *concatenatedUrl = [NSString stringWithFormat:@"%@%@%@", self.urlPrefix, self.picSize, self.urlSuffix];
+        self.patternPicUrl = [concatenatedUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     }
     return self;
 }
@@ -31,6 +33,24 @@
         [patterns addObject:pattern];
     }
     return patterns;
+}
+
++ (NSArray *)allPatternNames:(NSArray *)array {
+    NSMutableArray *names = [[NSMutableArray alloc] init];
+    for (NSDictionary *dictionary in array) {
+        NSString *appName = dictionary[@"name"];
+        [names addObject:appName];
+    }
+    return names;
+}
+
++ (NSString *)buildPatternUrlRequest:(NSString *)string {
+    NSString *beginUrl = @"http://mobile-patterns.com/api/v1/patterns?app=";
+    NSString *finalParams = @"&sort=newest&limit=5";
+    NSString *fullUrl = [NSString stringWithFormat:@"%@%@%@", beginUrl, string, finalParams];
+    NSString *webUrl = [fullUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    //Figure out best way/patterns to build URLs
+    return webUrl;
 }
 
 @end

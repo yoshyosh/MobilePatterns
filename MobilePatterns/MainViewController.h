@@ -11,6 +11,6 @@
 @interface MainViewController : UIViewController <UIPageViewControllerDataSource>
 @property (nonatomic) UIPageViewController *pageViewController;
 @property (nonatomic) UIPageViewController *collectionPageViewController;
-@property (nonatomic) NSArray *arrayOfPatterns;
+@property (nonatomic) NSMutableArray *arrayOfPatterns;
 @property (nonatomic) NSArray *arrayPatternNames;
 @end
