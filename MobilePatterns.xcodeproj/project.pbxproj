@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		208EA8840C564B90A5BB98E4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F64AD0F91D724D5F823459D3 /* libPods.a */; };
 		332A043E1905B6DB00CCA9B6 /* Pattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 332A043D1905B6DB00CCA9B6 /* Pattern.m */; };
+		332A0552190F1F5D00CCA9B6 /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 332A0550190F1F5D00CCA9B6 /* MenuTableViewController.m */; };
+		332A0553190F1F5D00CCA9B6 /* MenuTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 332A0551190F1F5D00CCA9B6 /* MenuTableViewController.xib */; };
+		332A0597191045CA00CCA9B6 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 332A0595191045CA00CCA9B6 /* MenuTableViewCell.m */; };
+		332A0598191045CA00CCA9B6 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 332A0596191045CA00CCA9B6 /* MenuTableViewCell.xib */; };
+		332A059C19106BCC00CCA9B6 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 332A059A19106BCC00CCA9B6 /* TestViewController.m */; };
+		332A059D19106BCC00CCA9B6 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 332A059B19106BCC00CCA9B6 /* TestViewController.xib */; };
 		333624351901CA4900332147 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333624341901CA4900332147 /* Foundation.framework */; };
 		333624371901CA4900332147 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333624361901CA4900332147 /* CoreGraphics.framework */; };
 		333624391901CA4900332147 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333624381901CA4900332147 /* UIKit.framework */; };
@@ -42,6 +48,15 @@
 /* Begin PBXFileReference section */
 		332A043C1905B6DB00CCA9B6 /* Pattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pattern.h; sourceTree = "<group>"; };
 		332A043D1905B6DB00CCA9B6 /* Pattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pattern.m; sourceTree = "<group>"; };
+		332A054F190F1F5D00CCA9B6 /* MenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
+		332A0550190F1F5D00CCA9B6 /* MenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
+		332A0551190F1F5D00CCA9B6 /* MenuTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewController.xib; sourceTree = "<group>"; };
+		332A0594191045CA00CCA9B6 /* MenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewCell.h; sourceTree = "<group>"; };
+		332A0595191045CA00CCA9B6 /* MenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewCell.m; sourceTree = "<group>"; };
+		332A0596191045CA00CCA9B6 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
+		332A059919106BCC00CCA9B6 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		332A059A19106BCC00CCA9B6 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		332A059B19106BCC00CCA9B6 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		333624311901CA4900332147 /* MobilePatterns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobilePatterns.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		333624341901CA4900332147 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		333624361901CA4900332147 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -134,6 +149,9 @@
 			children = (
 				333624431901CA4900332147 /* AppDelegate.h */,
 				333624441901CA4900332147 /* AppDelegate.m */,
+				332A059919106BCC00CCA9B6 /* TestViewController.h */,
+				332A059A19106BCC00CCA9B6 /* TestViewController.m */,
+				332A059B19106BCC00CCA9B6 /* TestViewController.xib */,
 				333624461901CA4900332147 /* Images.xcassets */,
 				3336243B1901CA4900332147 /* Supporting Files */,
 				333624631901CA7200332147 /* PatternViewController.h */,
@@ -146,6 +164,12 @@
 				3336246E19034BF600332147 /* PatternPageViewController.m */,
 				332A043C1905B6DB00CCA9B6 /* Pattern.h */,
 				332A043D1905B6DB00CCA9B6 /* Pattern.m */,
+				332A054F190F1F5D00CCA9B6 /* MenuTableViewController.h */,
+				332A0550190F1F5D00CCA9B6 /* MenuTableViewController.m */,
+				332A0551190F1F5D00CCA9B6 /* MenuTableViewController.xib */,
+				332A0594191045CA00CCA9B6 /* MenuTableViewCell.h */,
+				332A0595191045CA00CCA9B6 /* MenuTableViewCell.m */,
+				332A0596191045CA00CCA9B6 /* MenuTableViewCell.xib */,
 			);
 			path = MobilePatterns;
 			sourceTree = "<group>";
@@ -259,10 +283,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				332A0553190F1F5D00CCA9B6 /* MenuTableViewController.xib in Resources */,
+				332A0598191045CA00CCA9B6 /* MenuTableViewCell.xib in Resources */,
 				333624711904B99400332147 /* Podfile in Resources */,
 				3336243F1901CA4900332147 /* InfoPlist.strings in Resources */,
 				333624471901CA4900332147 /* Images.xcassets in Resources */,
 				333624671901CA7200332147 /* PatternViewController.xib in Resources */,
+				332A059D19106BCC00CCA9B6 /* TestViewController.xib in Resources */,
 				3336246C1901D98E00332147 /* MainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +347,9 @@
 				333624661901CA7200332147 /* PatternViewController.m in Sources */,
 				333624451901CA4900332147 /* AppDelegate.m in Sources */,
 				333624411901CA4900332147 /* main.m in Sources */,
+				332A0552190F1F5D00CCA9B6 /* MenuTableViewController.m in Sources */,
+				332A059C19106BCC00CCA9B6 /* TestViewController.m in Sources */,
+				332A0597191045CA00CCA9B6 /* MenuTableViewCell.m in Sources */,
 				3336246B1901D98E00332147 /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

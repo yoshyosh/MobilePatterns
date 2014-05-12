@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "PatternViewController.h"
 #import "MainViewController.h"
+#import "MenuTableViewController.h"
+#import "TestViewController.h"
 
 @implementation AppDelegate
 
@@ -17,6 +19,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     MainViewController *mainViewController = [[MainViewController alloc] init];
+    //MenuTableViewController *mtv = [[MenuTableViewController alloc] init];
+    //TestViewController *tvc = [[TestViewController alloc] init];
     self.window.rootViewController = mainViewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

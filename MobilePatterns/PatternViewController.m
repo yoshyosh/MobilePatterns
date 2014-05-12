@@ -28,6 +28,8 @@
 {
     [super viewDidLoad];
     [self.screenImage setImageWithURL:self.imageURL];
+    self.appNameLabel.text = self.appName;
+    self.tagsLabel.text = self.tagString;
 }
 
 - (void)didReceiveMemoryWarning

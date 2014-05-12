@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UIViewController <UIPageViewControllerDataSource>
+@interface MainViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic) UIPageViewController *pageViewController;
 @property (nonatomic) UIPageViewController *collectionPageViewController;
 @property (nonatomic) NSMutableArray *arrayOfPatterns;
