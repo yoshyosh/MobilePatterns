@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MenuTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@protocol MenuTableViewControllerDelegate <NSObject>
 
+- (void)replaceWithTaggedItems:(NSArray *)arrayOfTaggedPatterns;
+
+@end
+
+@interface MenuTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic, weak) id <MenuTableViewControllerDelegate> delegate;
 @end

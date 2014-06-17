@@ -8,6 +8,8 @@
 
 #import "MenuTableViewController.h"
 #import "MenuTableViewCell.h"
+#import "Pattern.h"
+#import "MainViewController.h"
 
 @interface MenuTableViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *menuTableView;
@@ -16,11 +18,12 @@
 @end
 
 @implementation MenuTableViewController
+@synthesize delegate;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.menuTableView.dataSource = self;
     self.menuTableView.delegate = self;
     
@@ -105,14 +108,24 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    //<#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
-    NSLog(@"Selected at row %ld", (long)indexPath.row);
-    // Pass the selected object to the new view controller.
+    //Start loading spinner
     
-    // Push the view controller.
-    //[self.navigationController pushViewController:detailViewController animated:YES];
+    
+    //Construct URL
+    MenuTableViewCell *cell = (MenuTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    NSString *tagUrl = [Pattern buildPatternTagUrlRequest:[cell.menuLabel.text lowercaseString]];
+    
+    //Request data, make this non blocking
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:tagUrl]];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSError *error = nil;
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        //Update patterns to display
+        NSArray *arrayOfPatterns = [NSArray array];
+        arrayOfPatterns = [Pattern patternsWithArray:[dictionary objectForKey:@"patterns"]];
+        [self.delegate replaceWithTaggedItems:arrayOfPatterns];
+    }];
+    
 }
 
 

@@ -46,10 +46,19 @@
 
 + (NSString *)buildPatternUrlRequest:(NSString *)string {
     NSString *beginUrl = @"http://mobile-patterns.com/api/v1/patterns?app=";
-    NSString *finalParams = @"&sort=newest&limit=5";
+    NSString *finalParams = @"&sort=newest";
     NSString *fullUrl = [NSString stringWithFormat:@"%@%@%@", beginUrl, string, finalParams];
     NSString *webUrl = [fullUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     //Figure out best way/patterns to build URLs
+    return webUrl;
+}
+
++ (NSString *)buildPatternTagUrlRequest:(NSString *)string {
+    NSString *beginUrl = @"http://mobile-patterns.com/api/v1/patterns?tags=";
+    NSString *finalParams = @"&sort=newest";
+    NSString *fullUrl = [NSString stringWithFormat:@"%@%@%@", beginUrl, string, finalParams];
+    NSString *webUrl = [fullUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
     return webUrl;
 }
 

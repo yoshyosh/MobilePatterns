@@ -40,6 +40,7 @@
     [super viewDidLoad];
     
     self.menuTableView = [[MenuTableViewController alloc] init];
+    self.menuTableView.delegate = self;
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"blurbg"]];
     [imageView setFrame:self.menuTableView.view.frame];
     [self.view addSubview:imageView];
@@ -71,6 +72,7 @@
 - (void)runSetup {
     self.collectionPageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationVertical options:nil];
     self.collectionPageViewController.dataSource = self;
+    self.collectionPageViewController.delegate = self;
     self.collectionPageViewController.view.frame = self.view.bounds;
     
     PatternPageViewController *initialPageViewController = [self pageViewControllerAtIndex:0];
@@ -82,8 +84,10 @@
     [self.view addSubview:self.collectionPageViewController.view];
     [self.collectionPageViewController didMoveToParentViewController:self];
     
+    //Need to load the next pageViewController so that when we swipe up, it already exists
+    
     self.panGestureInterceptView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 568)];
-    self.panGestureInterceptView.backgroundColor = [UIColor blueColor];
+    self.panGestureInterceptView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.panGestureInterceptView];
     
     UIScreenEdgePanGestureRecognizer *edgePanGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(edgePanActivateMenu:)];
@@ -100,8 +104,8 @@
     if (panGesture.state == UIGestureRecognizerStateBegan) {
         
     } else if (panGesture.state == UIGestureRecognizerStateChanged){
-        CGRect frame = CGRectMake(point.x, point.x/3, 320 - (point.x/3), 568 - (2*point.x/3));
-        CGRect gesturePlaceholderFrame = CGRectMake(point.x, point.x/3, 30, 568 - (2*point.x/3));
+        CGRect frame = CGRectMake(point.x, 0, 320, 568);
+        CGRect gesturePlaceholderFrame = CGRectMake(point.x, 0, 30, 568);
         self.collectionPageViewController.view.frame = frame;
         self.panGestureInterceptView.frame = gesturePlaceholderFrame;
     } else if (panGesture.state == UIGestureRecognizerStateEnded){
@@ -116,8 +120,8 @@
     if (panGesture.state == UIGestureRecognizerStateBegan) {
         
     } else if (panGesture.state == UIGestureRecognizerStateChanged){
-        CGRect frame = CGRectMake(point.x, point.x/3, 320 - (point.x/3), 568 - (2*point.x/3));
-        CGRect gesturePlaceholderFrame = CGRectMake(point.x, point.x/3, 30, 568 - (2*point.x/3));
+        CGRect frame = CGRectMake(point.x, 0, 320, 568);
+        CGRect gesturePlaceholderFrame = CGRectMake(point.x, 0, 30, 568);
         self.collectionPageViewController.view.frame = frame;
         self.panGestureInterceptView.frame = gesturePlaceholderFrame;
     } else if (panGesture.state == UIGestureRecognizerStateEnded) {
@@ -127,17 +131,16 @@
 }
 
 - (void)animateMenuOpen {
-    NSLog(@"%@", NSStringFromCGRect(self.collectionPageViewController.view.frame));
-    [UIView animateWithDuration:.5 animations:^{
-        CGRect frame = CGRectMake(290, 100, 220, 368);
-        CGRect gesturePlaceholderFrame = CGRectMake(290, 100, 30, 368);
+    [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        CGRect frame = CGRectMake(290, 0, 320, 568);
+        CGRect gesturePlaceholderFrame = CGRectMake(290, 0, 30, 568);
         self.collectionPageViewController.view.frame = frame;
         self.panGestureInterceptView.frame = gesturePlaceholderFrame;
     } completion:nil];
 }
 
 - (void)animateMenuClosed {
-    [UIView animateWithDuration:.5 animations:^{
+    [UIView animateWithDuration:0.4 animations:^{
         CGRect frame = CGRectMake(0, 0, 320, 568);
         CGRect gesturePlaceholderFrame = CGRectMake(0, 0, 30, 568);
         self.collectionPageViewController.view.frame = frame;
@@ -151,8 +154,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+//Creates the viewController or pageViewController before the current
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     
+    // If swiping left and right
     if ([viewController isKindOfClass:[PatternViewController class]]) {
         NSUInteger index = [(PatternViewController *)viewController index];
         
@@ -165,6 +170,7 @@
         NSUInteger pageIndex = [(PatternPageViewController *)pageViewController index];
         return [self viewControllerAtPageIndex:pageIndex patternIndex:index];
     } else {
+        //If swiping up and down, create new page view controller
         NSUInteger index = [(PatternPageViewController *)viewController index];
 
         if (index == 0) {
@@ -176,11 +182,14 @@
     }
 }
 
+//Creates the viewController after the currently viewed viewController
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     if ([viewController isKindOfClass:[PatternViewController class]]) {
         NSUInteger index = [(PatternViewController *)viewController index];
         NSUInteger pageIndex = [(PatternPageViewController *)pageViewController index];
         NSArray *countArray = self.arrayOfPatterns[pageIndex];
+        
+        //if swiping left and right create a new viewController
         if (index == (countArray.count - 1)) {
             return nil;
         }
@@ -190,8 +199,8 @@
         
         return [self viewControllerAtPageIndex:pageIndex patternIndex:index];
     } else {
+        //if swiping up and down create a new page view controller
         NSUInteger index = [(PatternPageViewController *)viewController index];
-
         if (index >= [self.arrayPatternNames count]) {
         return nil;
         }
@@ -202,6 +211,7 @@
     
 }
 
+// Creates a new pattern viewController
 - (PatternViewController *)viewControllerAtPageIndex:(NSUInteger)pageIndex patternIndex:(NSUInteger)patternIndex {
     PatternViewController *patternViewController = [[PatternViewController alloc] init];
     patternViewController.index = patternIndex;
@@ -215,6 +225,7 @@
     
 }
 
+// Creates a PageViewController that holds an array of patterns
 - (PatternPageViewController *)pageViewControllerAtIndex:(NSUInteger)index {
     PatternPageViewController *patternPageViewController = [[PatternPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     patternPageViewController.index = index;
@@ -226,36 +237,62 @@
     NSArray *patterns = self.arrayOfPatterns[index];
     if (patterns.count == 0) {
         NSString *requestPatternsUrl = [Pattern buildPatternUrlRequest:self.arrayPatternNames[index]];
-        NSData *jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:requestPatternsUrl]];
-        NSError *error = nil;
-        NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-        self.arrayOfPatterns[index] = [Pattern patternsWithArray:[dataDictionary objectForKey:@"patterns"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestPatternsUrl]];
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            NSError *error = nil;
+            NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            
+            //Set newly loaded patterns from this index to array of patterns
+            self.arrayOfPatterns[index] = [Pattern patternsWithArray:[dataDictionary objectForKey:@"patterns"]];
+            PatternViewController *initialViewController = [self viewControllerAtPageIndex:index patternIndex:0];
+            NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
+            [patternPageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        }];
+
+    } else {
+        PatternViewController *initialViewController = [self viewControllerAtPageIndex:index patternIndex:0];
+        NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
+        [patternPageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     }
-    
-    PatternViewController *initialViewController = [self viewControllerAtPageIndex:index patternIndex:0];
-    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
-    
-    [patternPageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     
     return patternPageViewController;
 }
 
+//When the page view controller fully transitions fade out the app type/tags preview overlay
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
-    //Need to figure out which view controller is currently in view,
     if (completed) {
-        PatternViewController *viewController = [pageViewController.viewControllers lastObject];
-        viewController.previewView.alpha = 1.0;
-        [UIView animateWithDuration:1.0 animations:^{
-            viewController.previewView.alpha = 0.0;
-        } completion:nil];
+        if ([pageViewController isKindOfClass:[PatternPageViewController class]]) {
+            PatternViewController *viewController = [pageViewController.viewControllers lastObject];
+            [self fadeOutPreviewView:viewController];
+        } else {
+            // I want to have a blank screen / loader until the new pageViewController is loaded
+            PatternPageViewController *patternPageViewController = [pageViewController.viewControllers lastObject];
+            PatternViewController *viewController = [patternPageViewController.viewControllers lastObject];
+            [self fadeOutPreviewView:viewController];
+        }
     }
-    
-    //Need logic for pageviewcontroller changing vertically
 
+}
+
+- (void)fadeOutPreviewView:(PatternViewController *)viewController {
+    viewController.previewView.alpha = 1.0;
+    [UIView animateWithDuration:1.0 animations:^{
+        viewController.previewView.alpha = 0.0;
+    } completion:nil];
 }
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
+}
+
+- (void)replaceWithTaggedItems:(NSArray *)arrayOfTaggedPatterns {
+    self.arrayOfPatterns[0] = arrayOfTaggedPatterns;
+    
+    //Refresh the pageview controller
+    PatternPageViewController *initialPageViewController = [self pageViewControllerAtIndex:0];
+    NSArray *collectionViewControllers = [NSArray arrayWithObject:initialPageViewController];
+    
+    [self.collectionPageViewController setViewControllers:collectionViewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
 
 @end

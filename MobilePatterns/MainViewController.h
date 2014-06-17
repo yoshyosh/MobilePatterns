@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuTableViewController.h"
 
-@interface MainViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate,UIGestureRecognizerDelegate>
+@interface MainViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate,UIGestureRecognizerDelegate, MenuTableViewControllerDelegate>
 @property (nonatomic) UIPageViewController *pageViewController;
 @property (nonatomic) UIPageViewController *collectionPageViewController;
 @property (nonatomic) NSMutableArray *arrayOfPatterns;

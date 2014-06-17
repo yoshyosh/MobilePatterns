@@ -22,4 +22,5 @@
 + (NSArray *)patternsWithArray:(NSArray *)array;
 + (NSArray *)allPatternNames:(NSArray *)array;
 + (NSString *)buildPatternUrlRequest:(NSString *)string;
++ (NSString *)buildPatternTagUrlRequest:(NSString *)string;
 @end
