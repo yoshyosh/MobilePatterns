@@ -13,8 +13,6 @@
 		332A0553190F1F5D00CCA9B6 /* MenuTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 332A0551190F1F5D00CCA9B6 /* MenuTableViewController.xib */; };
 		332A0597191045CA00CCA9B6 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 332A0595191045CA00CCA9B6 /* MenuTableViewCell.m */; };
 		332A0598191045CA00CCA9B6 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 332A0596191045CA00CCA9B6 /* MenuTableViewCell.xib */; };
-		332A059C19106BCC00CCA9B6 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 332A059A19106BCC00CCA9B6 /* TestViewController.m */; };
-		332A059D19106BCC00CCA9B6 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 332A059B19106BCC00CCA9B6 /* TestViewController.xib */; };
 		333624351901CA4900332147 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333624341901CA4900332147 /* Foundation.framework */; };
 		333624371901CA4900332147 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333624361901CA4900332147 /* CoreGraphics.framework */; };
 		333624391901CA4900332147 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333624381901CA4900332147 /* UIKit.framework */; };
@@ -33,6 +31,8 @@
 		3336246C1901D98E00332147 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3336246A1901D98E00332147 /* MainViewController.xib */; };
 		3336246F19034BF600332147 /* PatternPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3336246E19034BF600332147 /* PatternPageViewController.m */; };
 		333624711904B99400332147 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 333624701904B99400332147 /* Podfile */; };
+		33AED5A41957CDED004C0E82 /* CollectionPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AED5A21957CDED004C0E82 /* CollectionPageViewController.m */; };
+		33AED5A51957CDED004C0E82 /* CollectionPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33AED5A31957CDED004C0E82 /* CollectionPageViewController.xib */; };
 		33F8F2FE192194E700D5DE6C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F8F2FD192194E700D5DE6C /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
@@ -55,9 +55,6 @@
 		332A0594191045CA00CCA9B6 /* MenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewCell.h; sourceTree = "<group>"; };
 		332A0595191045CA00CCA9B6 /* MenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewCell.m; sourceTree = "<group>"; };
 		332A0596191045CA00CCA9B6 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
-		332A059919106BCC00CCA9B6 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		332A059A19106BCC00CCA9B6 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
-		332A059B19106BCC00CCA9B6 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		333624311901CA4900332147 /* MobilePatterns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobilePatterns.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		333624341901CA4900332147 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		333624361901CA4900332147 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -83,6 +80,9 @@
 		3336246D19034BF600332147 /* PatternPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatternPageViewController.h; sourceTree = "<group>"; };
 		3336246E19034BF600332147 /* PatternPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatternPageViewController.m; sourceTree = "<group>"; };
 		333624701904B99400332147 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		33AED5A11957CDED004C0E82 /* CollectionPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionPageViewController.h; sourceTree = "<group>"; };
+		33AED5A21957CDED004C0E82 /* CollectionPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionPageViewController.m; sourceTree = "<group>"; };
+		33AED5A31957CDED004C0E82 /* CollectionPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionPageViewController.xib; sourceTree = "<group>"; };
 		33F8F2FC192194E700D5DE6C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		33F8F2FD192194E700D5DE6C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		D178FF90877B423C974CCA83 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -152,14 +152,14 @@
 			children = (
 				333624431901CA4900332147 /* AppDelegate.h */,
 				333624441901CA4900332147 /* AppDelegate.m */,
-				332A059919106BCC00CCA9B6 /* TestViewController.h */,
-				332A059A19106BCC00CCA9B6 /* TestViewController.m */,
-				332A059B19106BCC00CCA9B6 /* TestViewController.xib */,
 				333624461901CA4900332147 /* Images.xcassets */,
 				3336243B1901CA4900332147 /* Supporting Files */,
 				333624631901CA7200332147 /* PatternViewController.h */,
 				333624641901CA7200332147 /* PatternViewController.m */,
 				333624651901CA7200332147 /* PatternViewController.xib */,
+				33AED5A11957CDED004C0E82 /* CollectionPageViewController.h */,
+				33AED5A21957CDED004C0E82 /* CollectionPageViewController.m */,
+				33AED5A31957CDED004C0E82 /* CollectionPageViewController.xib */,
 				333624681901D98E00332147 /* MainViewController.h */,
 				333624691901D98E00332147 /* MainViewController.m */,
 				3336246A1901D98E00332147 /* MainViewController.xib */,
@@ -290,11 +290,11 @@
 			files = (
 				332A0553190F1F5D00CCA9B6 /* MenuTableViewController.xib in Resources */,
 				332A0598191045CA00CCA9B6 /* MenuTableViewCell.xib in Resources */,
+				33AED5A51957CDED004C0E82 /* CollectionPageViewController.xib in Resources */,
 				333624711904B99400332147 /* Podfile in Resources */,
 				3336243F1901CA4900332147 /* InfoPlist.strings in Resources */,
 				333624471901CA4900332147 /* Images.xcassets in Resources */,
 				333624671901CA7200332147 /* PatternViewController.xib in Resources */,
-				332A059D19106BCC00CCA9B6 /* TestViewController.xib in Resources */,
 				3336246C1901D98E00332147 /* MainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,8 +352,8 @@
 				333624661901CA7200332147 /* PatternViewController.m in Sources */,
 				333624451901CA4900332147 /* AppDelegate.m in Sources */,
 				333624411901CA4900332147 /* main.m in Sources */,
+				33AED5A41957CDED004C0E82 /* CollectionPageViewController.m in Sources */,
 				332A0552190F1F5D00CCA9B6 /* MenuTableViewController.m in Sources */,
-				332A059C19106BCC00CCA9B6 /* TestViewController.m in Sources */,
 				33F8F2FE192194E700D5DE6C /* MBProgressHUD.m in Sources */,
 				332A0597191045CA00CCA9B6 /* MenuTableViewCell.m in Sources */,
 				3336246B1901D98E00332147 /* MainViewController.m in Sources */,

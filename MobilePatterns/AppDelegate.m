@@ -10,7 +10,7 @@
 #import "PatternViewController.h"
 #import "MainViewController.h"
 #import "MenuTableViewController.h"
-#import "TestViewController.h"
+#import "CollectionPageViewController.h"
 
 @implementation AppDelegate
 
@@ -18,10 +18,11 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    MainViewController *mainViewController = [[MainViewController alloc] init];
+    //MainViewController *mainViewController = [[MainViewController alloc] init];
     //MenuTableViewController *mtv = [[MenuTableViewController alloc] init];
-    //TestViewController *tvc = [[TestViewController alloc] init];
-    self.window.rootViewController = mainViewController;
+    CollectionPageViewController *cpvc = [[CollectionPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationVertical options:nil];
+    
+    self.window.rootViewController = cpvc;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

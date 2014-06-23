@@ -11,7 +11,4 @@
 
 @interface MainViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate,UIGestureRecognizerDelegate, MenuTableViewControllerDelegate>
 @property (nonatomic) UIPageViewController *pageViewController;
-@property (nonatomic) UIPageViewController *collectionPageViewController;
-@property (nonatomic) NSMutableArray *arrayOfPatterns;
-@property (nonatomic) NSArray *arrayPatternNames;
 @end

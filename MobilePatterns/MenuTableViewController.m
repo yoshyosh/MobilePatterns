@@ -28,6 +28,7 @@
     self.menuTableView.delegate = self;
     
     self.menuTableItems = [[NSArray alloc] initWithObjects:@"RECENTLY ADDED", @"CALENDAR", @"CAMERA CONTROLLER", @"COACH MARKS", @"COMMENT COMPOSE", @"COMPOSE SCREENS", @"CUSTOM NAVIGATION", @"DETAIL VIEWS", @"EMPTY DATA SETS", @"FEEDS", @"LISTS", @"LOG IN", @"MAPS", @"GALLERIES", @"POPOVERS", @"SEARCH", @"SETTINGS", @"SIGN UP FLOWS", @"SPLASH SCREENS", @"STATS", @"TIMELINES", @"USER PROFILES", @"WALKTHROUGHS", nil];
+
 }
 
 - (void)didReceiveMemoryWarning
