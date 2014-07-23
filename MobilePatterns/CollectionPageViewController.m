@@ -11,6 +11,7 @@
 #import "PatternViewController.h"
 #import "Pattern.h"
 #import "MenuTableViewController.h"
+#import "PatternCacheItem.h"
 
 @interface CollectionPageViewController ()
 

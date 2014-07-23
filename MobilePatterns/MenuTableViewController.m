@@ -9,7 +9,6 @@
 #import "MenuTableViewController.h"
 #import "MenuTableViewCell.h"
 #import "Pattern.h"
-#import "MainViewController.h"
 
 @interface MenuTableViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *menuTableView;
@@ -61,6 +60,9 @@
     }
     
     cell.menuLabel.text = [NSString stringWithFormat:@"%@", self.menuTableItems[indexPath.row]];
+    UIView *cellBgColorView = [[UIView alloc] init];
+    cellBgColorView.backgroundColor = [[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:.1];
+    [cell setSelectedBackgroundView:cellBgColorView];
     return cell;
 }
 

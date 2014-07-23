@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		208EA8840C564B90A5BB98E4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F64AD0F91D724D5F823459D3 /* libPods.a */; };
+		33224DB6197CA12500A36D5F /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 33224DB4197CA0A700A36D5F /* libc++.dylib */; };
+		33224DB8197CA14000A36D5F /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33224DB7197CA14000A36D5F /* Realm.framework */; };
+		33224DBB197CA2DD00A36D5F /* PatternCacheItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 33224DBA197CA2DD00A36D5F /* PatternCacheItem.m */; };
 		332A043E1905B6DB00CCA9B6 /* Pattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 332A043D1905B6DB00CCA9B6 /* Pattern.m */; };
 		332A0552190F1F5D00CCA9B6 /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 332A0550190F1F5D00CCA9B6 /* MenuTableViewController.m */; };
 		332A0553190F1F5D00CCA9B6 /* MenuTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 332A0551190F1F5D00CCA9B6 /* MenuTableViewController.xib */; };
@@ -27,12 +30,11 @@
 		3336245A1901CA4900332147 /* MobilePatternsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 333624591901CA4900332147 /* MobilePatternsTests.m */; };
 		333624661901CA7200332147 /* PatternViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 333624641901CA7200332147 /* PatternViewController.m */; };
 		333624671901CA7200332147 /* PatternViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333624651901CA7200332147 /* PatternViewController.xib */; };
-		3336246B1901D98E00332147 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 333624691901D98E00332147 /* MainViewController.m */; };
-		3336246C1901D98E00332147 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3336246A1901D98E00332147 /* MainViewController.xib */; };
 		3336246F19034BF600332147 /* PatternPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3336246E19034BF600332147 /* PatternPageViewController.m */; };
 		333624711904B99400332147 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 333624701904B99400332147 /* Podfile */; };
 		33AED5A41957CDED004C0E82 /* CollectionPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AED5A21957CDED004C0E82 /* CollectionPageViewController.m */; };
 		33AED5A51957CDED004C0E82 /* CollectionPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33AED5A31957CDED004C0E82 /* CollectionPageViewController.xib */; };
+		33D49D1E19806A3000A7EF0F /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 33D49D1D19806A3000A7EF0F /* Readme.md */; };
 		33F8F2FE192194E700D5DE6C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F8F2FD192194E700D5DE6C /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +49,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		33224DB4197CA0A700A36D5F /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		33224DB7197CA14000A36D5F /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		33224DB9197CA2DD00A36D5F /* PatternCacheItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PatternCacheItem.h; path = ../PatternCacheItem.h; sourceTree = "<group>"; };
+		33224DBA197CA2DD00A36D5F /* PatternCacheItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatternCacheItem.m; path = ../PatternCacheItem.m; sourceTree = "<group>"; };
 		332A043C1905B6DB00CCA9B6 /* Pattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pattern.h; sourceTree = "<group>"; };
 		332A043D1905B6DB00CCA9B6 /* Pattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pattern.m; sourceTree = "<group>"; };
 		332A054F190F1F5D00CCA9B6 /* MenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
@@ -74,15 +80,13 @@
 		333624631901CA7200332147 /* PatternViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatternViewController.h; sourceTree = "<group>"; };
 		333624641901CA7200332147 /* PatternViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatternViewController.m; sourceTree = "<group>"; };
 		333624651901CA7200332147 /* PatternViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatternViewController.xib; sourceTree = "<group>"; };
-		333624681901D98E00332147 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		333624691901D98E00332147 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		3336246A1901D98E00332147 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		3336246D19034BF600332147 /* PatternPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatternPageViewController.h; sourceTree = "<group>"; };
 		3336246E19034BF600332147 /* PatternPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatternPageViewController.m; sourceTree = "<group>"; };
-		333624701904B99400332147 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		333624701904B99400332147 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		33AED5A11957CDED004C0E82 /* CollectionPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionPageViewController.h; sourceTree = "<group>"; };
 		33AED5A21957CDED004C0E82 /* CollectionPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionPageViewController.m; sourceTree = "<group>"; };
 		33AED5A31957CDED004C0E82 /* CollectionPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionPageViewController.xib; sourceTree = "<group>"; };
+		33D49D1D19806A3000A7EF0F /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.md; sourceTree = "<group>"; };
 		33F8F2FC192194E700D5DE6C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		33F8F2FD192194E700D5DE6C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		D178FF90877B423C974CCA83 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33224DB8197CA14000A36D5F /* Realm.framework in Frameworks */,
+				33224DB6197CA12500A36D5F /* libc++.dylib in Frameworks */,
 				333624371901CA4900332147 /* CoreGraphics.framework in Frameworks */,
 				333624391901CA4900332147 /* UIKit.framework in Frameworks */,
 				333624351901CA4900332147 /* Foundation.framework in Frameworks */,
@@ -114,9 +120,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		33224DBC197CA2E300A36D5F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				332A043C1905B6DB00CCA9B6 /* Pattern.h */,
+				332A043D1905B6DB00CCA9B6 /* Pattern.m */,
+				33224DB9197CA2DD00A36D5F /* PatternCacheItem.h */,
+				33224DBA197CA2DD00A36D5F /* PatternCacheItem.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		33224DBD197CA32700A36D5F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				333624631901CA7200332147 /* PatternViewController.h */,
+				333624641901CA7200332147 /* PatternViewController.m */,
+				333624651901CA7200332147 /* PatternViewController.xib */,
+				33AED5A11957CDED004C0E82 /* CollectionPageViewController.h */,
+				33AED5A21957CDED004C0E82 /* CollectionPageViewController.m */,
+				33AED5A31957CDED004C0E82 /* CollectionPageViewController.xib */,
+				3336246D19034BF600332147 /* PatternPageViewController.h */,
+				3336246E19034BF600332147 /* PatternPageViewController.m */,
+				332A054F190F1F5D00CCA9B6 /* MenuTableViewController.h */,
+				332A0550190F1F5D00CCA9B6 /* MenuTableViewController.m */,
+				332A0551190F1F5D00CCA9B6 /* MenuTableViewController.xib */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		33224DBE197CA34000A36D5F /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				33F8F2FC192194E700D5DE6C /* MBProgressHUD.h */,
+				33F8F2FD192194E700D5DE6C /* MBProgressHUD.m */,
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
+		33224DBF197CA35400A36D5F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				332A0594191045CA00CCA9B6 /* MenuTableViewCell.h */,
+				332A0595191045CA00CCA9B6 /* MenuTableViewCell.m */,
+				332A0596191045CA00CCA9B6 /* MenuTableViewCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		333624281901CA4800332147 = {
 			isa = PBXGroup;
 			children = (
+				33D49D1D19806A3000A7EF0F /* Readme.md */,
 				333624701904B99400332147 /* Podfile */,
 				3336243A1901CA4900332147 /* MobilePatterns */,
 				333624531901CA4900332147 /* MobilePatternsTests */,
@@ -138,6 +193,8 @@
 		333624331901CA4900332147 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				33224DB4197CA0A700A36D5F /* libc++.dylib */,
+				33224DB7197CA14000A36D5F /* Realm.framework */,
 				333624341901CA4900332147 /* Foundation.framework */,
 				333624361901CA4900332147 /* CoreGraphics.framework */,
 				333624381901CA4900332147 /* UIKit.framework */,
@@ -153,28 +210,11 @@
 				333624431901CA4900332147 /* AppDelegate.h */,
 				333624441901CA4900332147 /* AppDelegate.m */,
 				333624461901CA4900332147 /* Images.xcassets */,
+				33224DBC197CA2E300A36D5F /* Model */,
+				33224DBD197CA32700A36D5F /* ViewController */,
+				33224DBF197CA35400A36D5F /* View */,
 				3336243B1901CA4900332147 /* Supporting Files */,
-				333624631901CA7200332147 /* PatternViewController.h */,
-				333624641901CA7200332147 /* PatternViewController.m */,
-				333624651901CA7200332147 /* PatternViewController.xib */,
-				33AED5A11957CDED004C0E82 /* CollectionPageViewController.h */,
-				33AED5A21957CDED004C0E82 /* CollectionPageViewController.m */,
-				33AED5A31957CDED004C0E82 /* CollectionPageViewController.xib */,
-				333624681901D98E00332147 /* MainViewController.h */,
-				333624691901D98E00332147 /* MainViewController.m */,
-				3336246A1901D98E00332147 /* MainViewController.xib */,
-				3336246D19034BF600332147 /* PatternPageViewController.h */,
-				3336246E19034BF600332147 /* PatternPageViewController.m */,
-				332A043C1905B6DB00CCA9B6 /* Pattern.h */,
-				332A043D1905B6DB00CCA9B6 /* Pattern.m */,
-				332A054F190F1F5D00CCA9B6 /* MenuTableViewController.h */,
-				332A0550190F1F5D00CCA9B6 /* MenuTableViewController.m */,
-				332A0551190F1F5D00CCA9B6 /* MenuTableViewController.xib */,
-				332A0594191045CA00CCA9B6 /* MenuTableViewCell.h */,
-				332A0595191045CA00CCA9B6 /* MenuTableViewCell.m */,
-				332A0596191045CA00CCA9B6 /* MenuTableViewCell.xib */,
-				33F8F2FC192194E700D5DE6C /* MBProgressHUD.h */,
-				33F8F2FD192194E700D5DE6C /* MBProgressHUD.m */,
+				33224DBE197CA34000A36D5F /* ThirdParty */,
 			);
 			path = MobilePatterns;
 			sourceTree = "<group>";
@@ -294,8 +334,8 @@
 				333624711904B99400332147 /* Podfile in Resources */,
 				3336243F1901CA4900332147 /* InfoPlist.strings in Resources */,
 				333624471901CA4900332147 /* Images.xcassets in Resources */,
+				33D49D1E19806A3000A7EF0F /* Readme.md in Resources */,
 				333624671901CA7200332147 /* PatternViewController.xib in Resources */,
-				3336246C1901D98E00332147 /* MainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,8 +395,8 @@
 				33AED5A41957CDED004C0E82 /* CollectionPageViewController.m in Sources */,
 				332A0552190F1F5D00CCA9B6 /* MenuTableViewController.m in Sources */,
 				33F8F2FE192194E700D5DE6C /* MBProgressHUD.m in Sources */,
+				33224DBB197CA2DD00A36D5F /* PatternCacheItem.m in Sources */,
 				332A0597191045CA00CCA9B6 /* MenuTableViewCell.m in Sources */,
-				3336246B1901D98E00332147 /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +516,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobilePatterns/MobilePatterns-Prefix.pch";
 				INFOPLIST_FILE = "MobilePatterns/MobilePatterns-Info.plist";
@@ -493,6 +537,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobilePatterns/MobilePatterns-Prefix.pch";
 				INFOPLIST_FILE = "MobilePatterns/MobilePatterns-Info.plist";

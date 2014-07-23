@@ -8,9 +8,10 @@
 
 #import "AppDelegate.h"
 #import "PatternViewController.h"
-#import "MainViewController.h"
 #import "MenuTableViewController.h"
 #import "CollectionPageViewController.h"
+#import <Realm/Realm.h>
+#import "PatternCacheItem.h"
 
 @implementation AppDelegate
 
@@ -18,8 +19,6 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    //MainViewController *mainViewController = [[MainViewController alloc] init];
-    //MenuTableViewController *mtv = [[MenuTableViewController alloc] init];
     CollectionPageViewController *cpvc = [[CollectionPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationVertical options:nil];
     
     self.window.rootViewController = cpvc;
@@ -54,5 +53,16 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+//Migration in case old data doesnt match
+//[RLMRealm migrateDefaultRealmWithBlock:^NSUInteger(RLMMigration *migration, NSUInteger oldSchemaVersion) {
+//    //        if (oldSchemaVersion < 1) {
+//    //            [migration enumerateObjects:PatternCacheItem.className block:^(RLMObject *oldObject, RLMObject *newObject) {
+//    //                newObject[@"createdAt"] = [[NSDate alloc] init];
+//    //                newObject[@"updatedAt"] = [[NSDate alloc] init];
+//    //            }];
+//    //        }
+//    return 3;
+//}];
 
 @end

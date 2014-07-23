@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Realm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>28BAB496BD7E4FC1ADA7DCAC</key>
+		<key>4473DC39E1804857A24EE952</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>964E42A2822D48D3B90767FB</key>
+		<key>6DDDCFFA0CD24918982F118D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A4D44C1460174ABBA6E0A6C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
