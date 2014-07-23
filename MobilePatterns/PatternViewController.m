@@ -72,7 +72,7 @@
     RLMArray *cacheSortedByLeastRecent = [[PatternCacheItem allObjects] arraySortedByProperty:@"updatedAt" ascending:YES];
     NSUInteger currentCacheTotal = cacheSortedByRecent.count;
     NSUInteger maxCacheItemCount = 5;
-    // Check how full the cache is, If its full (currentCacheTotal > 200 or something), remove items from cache until cacheTotal == 200
+    // Check how full the cache is, If its full (currentCacheTotal > 5 or something), remove items from cache until cacheTotal == 5
     if (currentCacheTotal > maxCacheItemCount) {
         //We add one to account for 0 index case
         NSUInteger overLimitCount = (currentCacheTotal - maxCacheItemCount) + 1;
